@@ -52,7 +52,7 @@ store.$onAction(({ name, store, after }) => {
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgb(183, 0, 189);
   transition: 0.4s;
 }
 
@@ -61,6 +61,7 @@ h3 {
 }
 
 button {
+  color: rgb(183, 0, 189);
   margin: 0 auto;
   display: block;
 }
