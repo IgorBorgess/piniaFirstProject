@@ -4,13 +4,31 @@ import HelloWorld from './components/HelloWorld.vue'
 import { useBankAccountStore } from "./stores/bankAccount"
 
 const store = useBankAccountStore();
+
+store.$onAction(({ name, store, after }) => {
+  after(result => {
+    if (result && name === "charge") {
+      store.processTransaction(result)
+    }
+  })
+})
 </script>
 
 <template>
   <header>
     <div class="wrapper">
       <HelloWorld msg="Bank of Pinia" />
-      <h3>Balance: {{ store.runningBalance }}</h3>
+      <h3>Balance: ${{ store.runningBalance }}</h3>
+      <h3>Pending: ${{ store.pendingAmount }}</h3>
+
+      <button @click="store.charge(5)">Buy Coffe $5</button>
+
+      <h3>Pending:</h3>
+      <ul>
+        <li v-for="item in store.pendingTransactions" :key="item.id">
+          ${{ item.amount }}
+        </li>
+      </ul>
 
       <h3>Processed:</h3>
       <ul>
