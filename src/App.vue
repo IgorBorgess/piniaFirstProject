@@ -18,19 +18,18 @@ store.$onAction(({ name, store, after }) => {
   <header>
     <div class="wrapper">
       <HelloWorld msg="Bank of Pinia" />
-      <h3>Balance: ${{ store.runningBalance }}</h3>
-      <h3>Pending: ${{ store.pendingAmount }}</h3>
-
+      <h3>Balance: ${{ store.runningBalance }} | Pending: ${{ store.pendingAmount }}</h3>
+    
       <button @click="store.charge(5)">Buy Coffe $5</button>
 
-      <h3>Pending:</h3>
+      <h4>Pending:</h4>
       <ul>
         <li v-for="item in store.pendingTransactions" :key="item.id">
           ${{ item.amount }}
         </li>
       </ul>
 
-      <h3>Processed:</h3>
+      <h4>Processed:</h4>
       <ul>
         <li v-for="item in store.processedTransactions" :key="item.id">
           ${{ item.amount }}
@@ -47,17 +46,7 @@ store.$onAction(({ name, store, after }) => {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+  /* background-color: aqua; */
 }
 
 a,
@@ -65,6 +54,15 @@ a,
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
+}
+
+h3 {
+  text-align: center;
+}
+
+button {
+  margin: 0 auto;
+  display: block;
 }
 
 @media (hover: hover) {
@@ -79,26 +77,5 @@ a,
     place-items: center;
   }
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
 }
 </style>
